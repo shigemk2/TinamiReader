@@ -5,6 +5,8 @@ require 'motion/project/template/ios'
 begin
   require 'bundler'
   Bundler.require
+  require 'bubble-wrap/rss_parser'
+  require 'bubble-wrap/http'
 rescue LoadError
 end
 
