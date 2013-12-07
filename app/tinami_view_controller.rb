@@ -20,9 +20,9 @@ class TinamiViewController < UITableViewController
     @searchBar.showsCancelButton = true
     @searchBar.sizeToFit
     self.view.dataSource = view.delegate = self
-    # self.view.tableHeaderView = @searchBar
     self.navigationItem.titleView = @searchBar
-    @searchBar.text = 'TinamiReader'
+    # @searchBar.text = 'マナりつ'
+    @searchBar.text = ''
 
     self.getItems(@feed, @searchBar)
     self.buildRefreshBtn
@@ -31,13 +31,16 @@ class TinamiViewController < UITableViewController
 
   def getItems(feed, searchBar)
     query = searchBar.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-    url = "http://localhost:8888/"
+    url = "http://133.242.188.88:3000/server?p1=#{query}"
     @items.clear
 
     BW::HTTP.get(url) do |response|
       if response.ok?
         @feed = BW::JSON.parse(response.body.to_str)
         for row in @feed['rsp']['contents']['content']
+          if row.nil?
+            break
+          end
           @items << row
         end
         view.reloadData

@@ -11,7 +11,8 @@ class WebViewController < UIViewController
 
       v.frame = self.view.bounds
       v.scalesPageToFit = true
-      url = self.item['thumbnails']['thumbnail_150x150']['url']
+      api_key = NSBundle.mainBundle.objectForInfoDictionaryKey('TINAMI_API')
+      url = "http://api.tinami.com/image?api_key=#{api_key}&cont_id=#{self.item['id']}&no=1"
       image_src = NSData.dataWithContentsOfURL(NSURL.URLWithString(url))
 
       image = UIImage.imageWithData(image_src)
