@@ -1,0 +1,10 @@
+testflight:
+  api_token: API TOKEN
+  team_token: TEAM TOKEN
+
+development:
+  provisioning: '/path/to/file'
+
+tinami:
+  api: TINAMI API
+
