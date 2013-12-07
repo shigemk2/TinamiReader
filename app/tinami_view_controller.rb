@@ -31,7 +31,7 @@ class TinamiViewController < UITableViewController
 
   def getItems(feed, searchBar)
     query = searchBar.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-    url = "http://133.242.188.88:3000/server?p1=#{query}"
+    url = "http://localhost:3000/server?p1=#{query}"
     @items.clear
 
     BW::HTTP.get(url) do |response|
